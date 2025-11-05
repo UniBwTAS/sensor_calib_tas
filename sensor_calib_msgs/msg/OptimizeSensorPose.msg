@@ -1,0 +1,4 @@
+string from_frame
+string to_frame
+bool optimize_translation
+bool optimize_rotation

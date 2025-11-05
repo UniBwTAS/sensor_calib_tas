@@ -1,0 +1,20 @@
+<launch>
+
+  <!-- Load board config -->
+  <rosparam command="load" file="$(find extrinsic_sensor_calib)/config/board_config.yaml" ns="extrinsic_sensor_calib/board_config"/>
+
+  <!-- Calibration Node -->
+  <node pkg="extrinsic_sensor_calib" type="extrinsic_sensor_calib" name="extrinsic_sensor_calib" ns="extrinsic_sensor_calib" output="screen"> <!-- When using rosrun or CLion append __ns:=extrinsic_sensor_calib -->
+    <remap from="~board_config" to="/extrinsic_sensor_calib/board_config/tag_bundles"/>
+    <rosparam>
+      reference_frame: none
+      lidars: []
+      cameras: []
+    </rosparam>
+  </node>
+
+  <!-- Visualization -->
+  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find extrinsic_sensor_calib)/config/extrinsic_sensor_calib.rviz" respawn="true"/>
+  <node type="rqt_gui" name="rqt_gui" pkg="rqt_gui" args="--perspective-file $(find extrinsic_sensor_calib)/config/extrinsic_sensor_calib.perspective" respawn="true"/>
+
+</launch>

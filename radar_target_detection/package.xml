@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<package format="2">
+  <name>radar_target_detection</name>
+  <version>0.0.1</version>
+  <description>Doppler simulator detection for radar calibration.</description>
+
+  <maintainer email="bianca.forkel@unibw.de">Bianca Forkel</maintainer>
+
+  <license>BSD</license>
+
+  <author email="bianca.forkel@unibw.de">Bianca Forkel</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <buildtool_depend>catkin_simple</buildtool_depend>
+
+  <depend>roscpp</depend>
+  <depend>dynamic_reconfigure</depend>
+  <depend>radar_msgs</depend>
+  <depend>sensor_calib_msgs</depend>
+  <depend>visualization_msgs</depend>
+</package>

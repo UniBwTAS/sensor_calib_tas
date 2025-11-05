@@ -1,0 +1,4 @@
+[submodule "apriltag_detection"]
+	path = apriltag_detection
+	url = https://github.com/UniBwTAS/apriltags_tas
+	branch = calib

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<package format="2">
+    <name>extrinsic_sensor_calib</name>
+    <version>0.0.1</version>
+    <description>Extrinsic calibration tool for 6D joint calibration of cameras, LiDAR sensors, and radar sensors.</description>
+
+    <maintainer email="bianca.forkel@unibw.de">Bianca Forkel</maintainer>
+
+    <license>BSD</license>
+
+    <author email="bianca.forkel@unibw.de">Bianca Forkel</author>
+
+    <buildtool_depend>catkin</buildtool_depend>
+    <buildtool_depend>catkin_simple</buildtool_depend>
+
+    <depend>eigen_catkin</depend>
+    <depend>pcl_ros</depend>
+    <depend>roscpp</depend>
+    <depend>std_msgs</depend>
+    <depend>std_srvs</depend>
+    <depend>geometry_msgs</depend>
+    <depend>sensor_msgs</depend>
+    <depend>visualization_msgs</depend>
+    <depend>image_geometry</depend>
+    <depend>dynamic_reconfigure</depend>
+    <depend>tf2</depend>
+    <depend>tf2_ros</depend>
+    <depend>eigen_conversions</depend>
+    <depend>cv_bridge</depend>
+    <depend>apriltags_msgs</depend>
+    <depend>sensor_calib_msgs</depend>
+</package>

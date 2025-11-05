@@ -1,0 +1,13 @@
+<launch>
+
+  <arg name="name"/>
+  <arg name="topic"/>
+
+  <arg name="stdout" default="screen"/>
+
+  <node pkg="radar_target_detection" type="doppler_simulator" name="doppler_simulator_detector_$(arg name)"
+        ns="sensor_calib" output="screen">
+    <remap from="~board_config" to="/sensor_calib/board_config/boards"/>
+  </node>
+
+</launch>

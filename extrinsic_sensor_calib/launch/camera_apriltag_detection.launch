@@ -1,0 +1,17 @@
+<launch>
+  <arg name="name"/>
+  <arg name="topic"/>
+  <arg name="color_mode" default="color"/> <!-- color/mono/raw/rect_color/rect_mono/... -->
+
+  <node pkg="apriltags_tas" type="apriltag_detector" name="apriltag_detector_$(arg name)" ns="sensor_calib">
+    <remap from="~tag_bundles" to="/sensor_calib/board_config/boards"/>
+
+    <param name="image_topic" value="$(arg topic)/image_$(arg color_mode)"/>
+    <param name="camera_info_topic" value="$(arg topic)/camera_info"/>
+
+    <param name="use_test_input_image" value="false"/>
+
+    <param name="only_known_tags" value="true"/>
+    <param name="filter_cross_corners" value="false"/>
+  </node>
+</launch>

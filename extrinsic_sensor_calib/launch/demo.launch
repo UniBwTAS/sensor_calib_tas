@@ -1,0 +1,9 @@
+<launch>
+  <!-- Play rosbag -->
+  <node pkg="rosbag" type="play" name="rosbag_play" output="screen"
+        args="$(find extrinsic_sensor_calib)/../demo/calibrate_mucar3.bag --clock --loop"/>
+  <param name="/use_sim_time" value="true"/>
+
+  <!-- Launch calibration -->
+  <include file="$(find extrinsic_sensor_calib)/launch/calibrate_mucar3.launch"/>
+</launch>

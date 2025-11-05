@@ -1,0 +1,56 @@
+<launch>
+
+  <arg name="name"/>
+  <arg name="topic"/>
+  <arg name="min_x"/>
+  <arg name="max_x"/>
+  <arg name="min_y"/>
+  <arg name="max_y"/>
+  <arg name="min_z"/>
+  <arg name="max_z"/>
+
+  <!-- PCL PREPROCESSING -->
+  <!-- PCL nodelet manager -->
+  <node pkg="nodelet" type="nodelet" name="pcl_manager" args="manager" ns="sensor_calib/hole_pattern_detector_$(arg name)"/>
+  <node pkg="nodelet" type="nodelet" name="pass_through_z" args="load pcl/PassThrough pcl_manager" ns="sensor_calib/hole_pattern_detector_$(arg name)">
+    <remap from="~input" to="$(arg topic)" />
+    <remap from="~output" to="/sensor_calib/hole_pattern_detector_$(arg name)/velodyne_z_filtered" />
+    <rosparam>
+      filter_field_name: z
+      filter_limit_negative: False
+      max_queue_size: 1
+      keep_organized: False
+    </rosparam>
+    <param name="filter_limit_min" value="$(arg min_z)"/>
+    <param name="filter_limit_max" value="$(arg max_z)"/>
+  </node>
+  <node pkg="nodelet" type="nodelet" name="pass_through_y" args="load pcl/PassThrough pcl_manager" ns="sensor_calib/hole_pattern_detector_$(arg name)">
+    <remap from="~input" to="/sensor_calib/hole_pattern_detector_$(arg name)/velodyne_z_filtered" />
+    <remap from="~output" to="/sensor_calib/hole_pattern_detector_$(arg name)/velodyne_yz_filtered" />
+    <rosparam>
+      filter_field_name: y
+      filter_limit_negative: False
+      max_queue_size: 1
+      keep_organized: False
+    </rosparam>
+    <param name="filter_limit_min" value="$(arg min_y)"/>
+    <param name="filter_limit_max" value="$(arg max_y)"/>
+  </node>
+  <node pkg="nodelet" type="nodelet" name="pass_through_x" args="load pcl/PassThrough pcl_manager" ns="sensor_calib/hole_pattern_detector_$(arg name)">
+    <remap from="~input" to="/sensor_calib/hole_pattern_detector_$(arg name)/velodyne_yz_filtered" />
+    <remap from="~output" to="/sensor_calib/hole_pattern_detector_$(arg name)/velodyne_xyz_filtered" />
+    <rosparam>
+      filter_field_name: x
+      filter_limit_negative: False
+      max_queue_size: 1
+      keep_organized: False
+    </rosparam>
+    <param name="filter_limit_min" value="$(arg min_x)"/>
+    <param name="filter_limit_max" value="$(arg max_x)"/>
+  </node>
+
+  <node pkg="lidar_reference_point_detection" type="hole_pattern_detector" name="hole_pattern_detector_$(arg name)" ns="sensor_calib">
+    <remap from="~point_cloud" to="~velodyne_xyz_filtered"/>
+    <remap from="~board_config" to="/sensor_calib/board_config/boards"/>
+  </node>
+</launch>

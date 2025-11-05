@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<package format="2">
+  <name>sensor_calib_msgs</name>
+  <version>0.0.1</version>
+  <description>Custom messages used for extrinsic sensor calibration</description>
+
+  <maintainer email="bianca.forkel@unibw.de">Bianca Forkel</maintainer>
+
+  <license>BSD</license>
+
+  <author email="bianca.forkel@unibw.de">Bianca Forkel</author>
+  <author email="jan.kallwies@unibw.de">Jan Kallwies</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>message_generation</build_depend>
+  <exec_depend>message_runtime</exec_depend>
+
+</package>

@@ -1,0 +1,589 @@
+Panels:
+  - Class: rviz/Displays
+    Help Height: 0
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /TF1/Frames1
+        - /Front Camera1/Visibility1
+        - /LiDAR Velodyne VLS1281
+      Splitter Ratio: 0.652466356754303
+    Tree Height: 334
+  - Class: rviz/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+  - Class: rviz/Time
+    Experimental: false
+    Name: Time
+    SyncMode: 0
+    SyncSource: 128 Segmented Plane
+Preferences:
+  PromptSaveOnExit: true
+Toolbars:
+  toolButtonStyle: 2
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 1
+      Class: rviz/Grid
+      Color: 160; 160; 164
+      Enabled: false
+      Line Style:
+        Line Width: 0.029999999329447746
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: -0.6399999856948853
+      Plane: XY
+      Plane Cell Count: 20
+      Reference Frame: base_link
+      Value: false
+    - Class: rviz/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: false
+        base_link:
+          Value: true
+        base_link_ground:
+          Value: false
+        hole_board:
+          Value: false
+        hole_board_sensor/lidar/vls128_roof:
+          Value: false
+        odom:
+          Value: false
+        sensor/camera/marveye/left:
+          Value: false
+        sensor/camera/marveye/left/world:
+          Value: false
+        sensor/camera/marveye/nir_left:
+          Value: false
+        sensor/camera/marveye/nir_left/world:
+          Value: false
+        sensor/camera/marveye/nir_right:
+          Value: false
+        sensor/camera/marveye/nir_right/world:
+          Value: false
+        sensor/camera/marveye/right:
+          Value: false
+        sensor/camera/marveye/right/world:
+          Value: false
+        sensor/camera/marveye/rotating_head:
+          Value: false
+        sensor/camera/marveye/rotation_point:
+          Value: false
+        sensor/camera/marveye/tele:
+          Value: false
+        sensor/camera/marveye/tele/mirror:
+          Value: false
+        sensor/camera/marveye/tele/world:
+          Value: false
+        sensor/camera/roof/ir:
+          Value: false
+        sensor/camera/roof/ir/world:
+          Value: false
+        sensor/camera/surround/back:
+          Value: false
+        sensor/camera/surround/back/world:
+          Value: false
+        sensor/camera/surround/front:
+          Value: true
+        sensor/camera/surround/front/world:
+          Value: false
+        sensor/camera/surround/front_calibrated:
+          Value: true
+        sensor/camera/surround/left:
+          Value: false
+        sensor/camera/surround/left/world:
+          Value: false
+        sensor/camera/surround/right:
+          Value: true
+        sensor/camera/surround/right/world:
+          Value: false
+        sensor/camera/surround/right_calibrated:
+          Value: true
+        sensor/camera/windshield/nir:
+          Value: false
+        sensor/camera/windshield/nir/world:
+          Value: false
+        sensor/camera/windshield/vis:
+          Value: false
+        sensor/camera/windshield/vis/world:
+          Value: false
+        sensor/ins/oxts:
+          Value: false
+        sensor/lidar/hdl64_roof:
+          Value: false
+        sensor/lidar/hdl64_roof/rotating_head:
+          Value: false
+        sensor/lidar/os32_left/os_sensor:
+          Value: false
+        sensor/lidar/os32_right/os_sensor:
+          Value: false
+        sensor/lidar/vls128_roof:
+          Value: true
+        sensor/odometry/base:
+          Value: false
+        sensor/radar/umrr/21:
+          Value: false
+        sensor/radar/umrr/31:
+          Value: false
+        sensor/radar/umrr/32:
+          Value: true
+        sensor/radar/umrr/32_calibrated:
+          Value: true
+        sensor/radar/umrr/33:
+          Value: false
+        sensor/radar/umrr/34:
+          Value: false
+        sensor/radar/umrr/35:
+          Value: true
+        sensor/radar/umrr/35_calibrated:
+          Value: true
+        utm:
+          Value: false
+        utm_fix:
+          Value: false
+        vehicle/center_of_gravity:
+          Value: false
+        vehicle/chassis:
+          Value: false
+        vehicle/rear_axis:
+          Value: false
+        vehicle/wheel/front_left:
+          Value: false
+        vehicle/wheel/front_left/air_suspension:
+          Value: false
+        vehicle/wheel/front_left/steer:
+          Value: false
+        vehicle/wheel/front_right:
+          Value: false
+        vehicle/wheel/front_right/air_suspension:
+          Value: false
+        vehicle/wheel/front_right/steer:
+          Value: false
+        vehicle/wheel/rear_left:
+          Value: false
+        vehicle/wheel/rear_left/air_suspension:
+          Value: false
+        vehicle/wheel/rear_left/steer:
+          Value: false
+        vehicle/wheel/rear_right:
+          Value: false
+        vehicle/wheel/rear_right/air_suspension:
+          Value: false
+        vehicle/wheel/rear_right/steer:
+          Value: false
+      Marker Alpha: 1
+      Marker Scale: 5
+      Name: TF
+      Show Arrows: false
+      Show Axes: true
+      Show Names: true
+      Tree:
+        base_link:
+          base_link_ground:
+            {}
+          sensor/camera/roof/ir/world:
+            sensor/camera/roof/ir:
+              {}
+          sensor/ins/oxts:
+            utm_fix:
+              utm:
+                {}
+          sensor/lidar/hdl64_roof:
+            sensor/lidar/hdl64_roof/rotating_head:
+              {}
+          sensor/lidar/vls128_roof:
+            hole_board_sensor/lidar/vls128_roof:
+              {}
+            sensor/camera/marveye/rotation_point:
+              sensor/camera/marveye/rotating_head:
+                sensor/camera/marveye/left/world:
+                  sensor/camera/marveye/left:
+                    {}
+                sensor/camera/marveye/nir_left/world:
+                  sensor/camera/marveye/nir_left:
+                    {}
+                sensor/camera/marveye/nir_right/world:
+                  sensor/camera/marveye/nir_right:
+                    {}
+                sensor/camera/marveye/right/world:
+                  sensor/camera/marveye/right:
+                    {}
+                sensor/camera/marveye/tele/mirror:
+                  sensor/camera/marveye/tele/world:
+                    sensor/camera/marveye/tele:
+                      {}
+            sensor/camera/surround/back/world:
+              sensor/camera/surround/back:
+                {}
+            sensor/camera/surround/front/world:
+              sensor/camera/surround/front:
+                hole_board:
+                  {}
+            sensor/camera/surround/front_calibrated:
+              {}
+            sensor/camera/surround/left/world:
+              sensor/camera/surround/left:
+                {}
+            sensor/camera/surround/right/world:
+              sensor/camera/surround/right:
+                {}
+            sensor/camera/surround/right_calibrated:
+              {}
+            sensor/camera/windshield/nir/world:
+              sensor/camera/windshield/nir:
+                {}
+            sensor/camera/windshield/vis/world:
+              sensor/camera/windshield/vis:
+                {}
+            sensor/lidar/os32_left/os_sensor:
+              {}
+            sensor/lidar/os32_right/os_sensor:
+              {}
+            sensor/radar/umrr/32_calibrated:
+              {}
+            sensor/radar/umrr/35_calibrated:
+              {}
+          sensor/odometry/base:
+            {}
+          sensor/radar/umrr/21:
+            {}
+          sensor/radar/umrr/31:
+            {}
+          sensor/radar/umrr/32:
+            {}
+          sensor/radar/umrr/33:
+            {}
+          sensor/radar/umrr/34:
+            {}
+          sensor/radar/umrr/35:
+            {}
+          vehicle/center_of_gravity:
+            {}
+          vehicle/chassis:
+            {}
+          vehicle/rear_axis:
+            odom:
+              {}
+          vehicle/wheel/front_left/air_suspension:
+            vehicle/wheel/front_left/steer:
+              vehicle/wheel/front_left:
+                {}
+          vehicle/wheel/front_right/air_suspension:
+            vehicle/wheel/front_right/steer:
+              vehicle/wheel/front_right:
+                {}
+          vehicle/wheel/rear_left/air_suspension:
+            vehicle/wheel/rear_left/steer:
+              vehicle/wheel/rear_left:
+                {}
+          vehicle/wheel/rear_right/air_suspension:
+            vehicle/wheel/rear_right/steer:
+              vehicle/wheel/rear_right:
+                {}
+      Update Interval: 0
+      Value: true
+    - Class: rviz/Camera
+      Enabled: true
+      Image Rendering: background and overlay
+      Image Topic: /sensor/camera/surround/front/image_rect_color
+      Name: Front Camera
+      Overlay Alpha: 0.5
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: true
+      Visibility:
+        Calibration Debug Markers: true
+        Grid: true
+        LiDAR Velodyne VLS128:
+          128 Cluster: true
+          128 Detections: true
+          128 Edges: true
+          128 Input: true
+          128 Range Filtered: true
+          128 Segmented Plane: true
+          Value: false
+        Radar Doppler Simulator Detections: false
+        Radar Input: true
+        TF: false
+        Value: true
+      Zoom Factor: 1.2000000476837158
+    - Class: rviz/Group
+      Displays:
+        - Alpha: 1
+          Autocompute Intensity Bounds: true
+          Autocompute Value Bounds:
+            Max Value: 10
+            Min Value: -10
+            Value: true
+          Axis: Z
+          Channel Name: sem_label
+          Class: rviz/PointCloud2
+          Color: 245; 121; 0
+          Color Transformer: FlatColor
+          Continuous Transform: false
+          Decay Time: 0
+          Enabled: false
+          Filter range:
+            Channel Name: sem_label
+            Invert Filter: false
+            Lower Limit: 0
+            Upper Limit: 0
+            Value: false
+          Invert Rainbow: false
+          Max Color: 255; 255; 255
+          Min Color: 0; 0; 0
+          Name: 128 Input
+          Persistent Intensity values: true
+          Position Transformer: XYZ
+          Queue Size: 10
+          Selectable: true
+          Show only:
+            Channel Name: sem_label
+            Equal To: 0
+            Value: false
+          Size (Pixels): 3
+          Size (m): 0.009999999776482582
+          Style: Points
+          Topic: /sensor/lidar/vls128_roof/velodyne_points
+          Unreliable: false
+          Use Fixed Frame: true
+          Use rainbow: true
+          Value: false
+        - Alpha: 1
+          Autocompute Intensity Bounds: true
+          Autocompute Value Bounds:
+            Max Value: 10
+            Min Value: -10
+            Value: true
+          Axis: Z
+          Channel Name: sem_label
+          Class: rviz/PointCloud2
+          Color: 245; 121; 0
+          Color Transformer: FlatColor
+          Continuous Transform: false
+          Decay Time: 0
+          Enabled: false
+          Filter range:
+            Channel Name: sem_label
+            Invert Filter: false
+            Lower Limit: 0
+            Upper Limit: 0
+            Value: false
+          Invert Rainbow: false
+          Max Color: 255; 255; 255
+          Min Color: 0; 0; 0
+          Name: 128 Range Filtered
+          Persistent Intensity values: true
+          Position Transformer: XYZ
+          Queue Size: 10
+          Selectable: true
+          Show only:
+            Channel Name: sem_label
+            Equal To: 0
+            Value: false
+          Size (Pixels): 3
+          Size (m): 0.009999999776482582
+          Style: Points
+          Topic: /sensor_calib/hole_pattern_detector_vls128/velodyne_xyz_filtered
+          Unreliable: false
+          Use Fixed Frame: true
+          Use rainbow: true
+          Value: false
+        - Alpha: 1
+          Autocompute Intensity Bounds: true
+          Autocompute Value Bounds:
+            Max Value: 10
+            Min Value: -10
+            Value: true
+          Axis: Z
+          Channel Name: sem_label
+          Class: rviz/PointCloud2
+          Color: 245; 121; 0
+          Color Transformer: FlatColor
+          Continuous Transform: false
+          Decay Time: 0
+          Enabled: true
+          Filter range:
+            Channel Name: sem_label
+            Invert Filter: false
+            Lower Limit: 0
+            Upper Limit: 0
+            Value: false
+          Invert Rainbow: false
+          Max Color: 255; 255; 255
+          Min Color: 0; 0; 0
+          Name: 128 Segmented Plane
+          Persistent Intensity values: true
+          Position Transformer: XYZ
+          Queue Size: 10
+          Selectable: true
+          Show only:
+            Channel Name: sem_label
+            Equal To: 0
+            Value: false
+          Size (Pixels): 3
+          Size (m): 0.009999999776482582
+          Style: Points
+          Topic: /sensor_calib/hole_pattern_detector_vls128/segmented_board
+          Unreliable: false
+          Use Fixed Frame: true
+          Use rainbow: true
+          Value: true
+        - Class: rviz/Marker
+          Enabled: true
+          Marker Topic: /sensor_calib/hole_pattern_detector_vls128/debug_markers
+          Name: 128 Cluster
+          Namespaces:
+            bounding_box: true
+          Queue Size: 100
+          Value: true
+        - Alpha: 1
+          Autocompute Intensity Bounds: true
+          Autocompute Value Bounds:
+            Max Value: 10
+            Min Value: -10
+            Value: true
+          Axis: Z
+          Channel Name: sem_label
+          Class: rviz/PointCloud2
+          Color: 0; 0; 255
+          Color Transformer: FlatColor
+          Continuous Transform: false
+          Decay Time: 0
+          Enabled: true
+          Filter range:
+            Channel Name: sem_label
+            Invert Filter: false
+            Lower Limit: 0
+            Upper Limit: 0
+            Value: false
+          Invert Rainbow: false
+          Max Color: 255; 255; 255
+          Min Color: 0; 0; 0
+          Name: 128 Edges
+          Persistent Intensity values: true
+          Position Transformer: XYZ
+          Queue Size: 10
+          Selectable: true
+          Show only:
+            Channel Name: sem_label
+            Equal To: 0
+            Value: false
+          Size (Pixels): 7
+          Size (m): 0.009999999776482582
+          Style: Points
+          Topic: /sensor_calib/hole_pattern_detector_vls128/edge_points
+          Unreliable: false
+          Use Fixed Frame: true
+          Use rainbow: true
+          Value: true
+        - Class: rviz/Marker
+          Enabled: true
+          Marker Topic: /sensor_calib/hole_pattern_detector_vls128/detection_markers
+          Name: 128 Detections
+          Namespaces:
+            reference_points: true
+          Queue Size: 100
+          Value: true
+      Enabled: true
+      Name: LiDAR Velodyne VLS128
+    - Class: rviz/Marker
+      Enabled: false
+      Marker Topic: /visualization/sensor/radar/umrr/detections
+      Name: Radar Input
+      Namespaces:
+        {}
+      Queue Size: 100
+      Value: false
+    - Class: rviz/Marker
+      Enabled: true
+      Marker Topic: /sensor_calib/doppler_simulator_detector_umrr/detection_markers
+      Name: Radar Doppler Simulator Detections
+      Namespaces:
+        doppler_simulator_sensor/radar/umrr/32: true
+        doppler_simulator_sensor/radar/umrr/35: true
+      Queue Size: 100
+      Value: true
+    - Class: rviz/Marker
+      Enabled: true
+      Marker Topic: /sensor_calib/extrinsic_sensor_calib/debug_markers
+      Name: Calibration Debug Markers
+      Namespaces:
+        {}
+      Queue Size: 100
+      Value: true
+  Enabled: true
+  Global Options:
+    Background Color: 136; 138; 133
+    Default Light: true
+    Fixed Frame: base_link
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz/Interact
+      Hide Inactive Objects: true
+    - Class: rviz/MoveCamera
+    - Class: rviz/Select
+    - Class: rviz/FocusCamera
+    - Class: rviz/Measure
+    - Class: rviz/SetInitialPose
+      Theta std deviation: 0.2617993950843811
+      Topic: /initialpose
+      X std deviation: 0.5
+      Y std deviation: 0.5
+    - Class: rviz/SetGoal
+      Topic: /move_base_simple/goal
+    - Class: rviz/PublishPoint
+      Single click: true
+      Topic: /clicked_point
+  Value: true
+  Views:
+    Current:
+      Class: rviz/ThirdPersonFollower
+      Distance: 12.668100357055664
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.05999999865889549
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Field of View: 0.7853981852531433
+      Focal Point:
+        X: 0.9149374961853027
+        Y: -1.3039677143096924
+        Z: 0
+      Focal Shape Fixed Size: true
+      Focal Shape Size: 0.05000000074505806
+      Invert Z Axis: false
+      Name: Current View
+      Near Clip Distance: 0.009999999776482582
+      Pitch: 0.8997971415519714
+      Target Frame: base_link
+      Yaw: 3.066850423812866
+    Saved: ~
+Window Geometry:
+  Displays:
+    collapsed: false
+  Front Camera:
+    collapsed: false
+  Height: 1135
+  Hide Left Dock: false
+  Hide Right Dock: true
+  QMainWindow State: 000000ff00000000fd0000000400000000000002df000003b5fc0200000014fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000000000000000fb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000080052005400440042000000003d0000006e0000000000000000fb000000160052005400440042002000530074007200650061006d0000000044000000e10000000000000000fb000000100044006900730070006c00610079007301000000440000019b000000fd01000003fb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000001800460072006f006e0074002000430061006d00650072006101000001e0000002190000002201000003fb000000240049006d0061006700650020004d0061007200760045007900650020004c0065006600740100000384000000990000000000000000fb0000000a0049006d0061006700650000000360000000bd0000000000000000fb0000001800430072006f006e006f007300200049006d00610067006500000003800000009d0000000000000000fb0000000800480065006c0070000000037d000000bb0000000000000000fb0000000a0049006d0061006700650100000235000000790000000000000000fb0000000c00430061006d0065007200610100000337000000e60000000000000000fb0000003e00430061006d0065007200610020004d006100720056004500790065002000720069006700680074002000630061006c00690062007200610074006500640100000338000000e50000000000000000fb000000160052006f007300620061006700500061006e0065006c0000000378000000a50000000000000000fb0000000c00430061006d0065007200610000000347000000d600000000000000000000000100000177000003b5fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a005600690065007700730000000044000003b5000000d301000003fb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000007800000004efc0100000002fb0000000800540069006d0065010000000000000780000002ad01000003fb0000000800540069006d00650100000000000004500000000000000000000004a0000003b500000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Time:
+    collapsed: false
+  Views:
+    collapsed: true
+  Width: 1920
+  X: 1920
+  Y: 0

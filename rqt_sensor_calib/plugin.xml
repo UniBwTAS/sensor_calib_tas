@@ -1,0 +1,17 @@
+<library path="src">
+  <class name="ExtrinsicSensorCalib" type="rqt_sensor_calib.sensor_calib_tas.ExtrinsicSensorCalib" base_class_type="rqt_gui_py::Plugin">
+    <description>
+      A Python GUI for sensor_calib_tas.
+    </description>
+    <qtgui>
+      <group>
+          <label>TAS</label>
+          <icon type="theme">folder</icon>
+          <statustip>Plugins developed at TAS.</statustip>
+      </group>
+      <label>Extrinsic Sensor Calib</label>
+      <icon type="theme">preferences-system-network</icon>
+      <statustip>A Python GUI for sensor_calib_tas.</statustip>
+    </qtgui>
+  </class>
+</library>

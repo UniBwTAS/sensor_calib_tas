@@ -1,0 +1,625 @@
+Panels:
+  - Class: rviz/Displays
+    Help Height: 0
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /TF1/Frames1
+        - /Front Camera1
+        - /Front Camera1/Visibility1
+        - /LiDAR Velodyne VLS1281
+        - /LiDAR Velodyne VLS1281/128 Segmented Plane1
+        - /LiDAR Velodyne VLS1281/128 Edges1
+        - /LiDAR Velodyne VLP161
+      Splitter Ratio: 0.652466356754303
+    Tree Height: 185
+  - Class: rviz/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+  - Class: rviz/Time
+    Experimental: false
+    Name: Time
+    SyncMode: 0
+    SyncSource: 128 Segmented Plane
+  - Class: rosbag_panel/RosbagPanel
+    LastOpenedDirectory: /media/bifo/Data/2025-03-14_touareg_radar_calibration/2025-03-14_16-39-52_tas/2025-03-14-16-39-53.bag
+    Name: RosbagPanel
+Preferences:
+  PromptSaveOnExit: true
+Toolbars:
+  toolButtonStyle: 2
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 1
+      Class: rviz/Grid
+      Color: 160; 160; 164
+      Enabled: false
+      Line Style:
+        Line Width: 0.029999999329447746
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: -0.6399999856948853
+      Plane: XY
+      Plane Cell Count: 20
+      Reference Frame: base_link
+      Value: false
+    - Class: rviz/TF
+      Enabled: false
+      Frame Timeout: 15
+      Frames:
+        All Enabled: false
+      Marker Alpha: 1
+      Marker Scale: 5
+      Name: TF
+      Show Arrows: false
+      Show Axes: true
+      Show Names: true
+      Tree:
+        {}
+      Update Interval: 0
+      Value: false
+    - Class: rviz/Camera
+      Enabled: true
+      Image Rendering: background and overlay
+      Image Topic: /sensor/camera/surround/front/image_rect_color
+      Name: Front Camera
+      Overlay Alpha: 0.5
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: true
+      Visibility:
+        Calibration Debug Markers: true
+        Grid: true
+        LiDAR Velodyne VLP16:
+          128 Cluster: true
+          128 Detections: true
+          128 Edges: true
+          128 Input: true
+          128 Non Ground Points: true
+          128 Range Filtered: true
+          128 Segmented Plane: true
+          Value: true
+        LiDAR Velodyne VLS128:
+          128 Cluster: true
+          128 Detections: true
+          128 Edges: true
+          128 Input: true
+          128 Non Ground Points: true
+          128 Range Filtered: true
+          128 Segmented Plane: true
+          Value: true
+        Radar Doppler Simulator Detections: true
+        TF: false
+        Value: true
+      Zoom Factor: 1.7999999523162842
+    - Class: rviz/Group
+      Displays:
+        - Alpha: 1
+          Autocompute Intensity Bounds: true
+          Autocompute Value Bounds:
+            Max Value: 10
+            Min Value: -10
+            Value: true
+          Axis: Z
+          Channel Name: sem_label
+          Class: rviz/PointCloud2
+          Color: 245; 121; 0
+          Color Transformer: FlatColor
+          Continuous Transform: false
+          Decay Time: 0
+          Enabled: false
+          Filter range:
+            Channel Name: sem_label
+            Invert Filter: false
+            Lower Limit: 0
+            Upper Limit: 0
+            Value: false
+          Invert Rainbow: false
+          Max Color: 255; 255; 255
+          Min Color: 0; 0; 0
+          Name: 128 Input
+          Persistent Intensity values: true
+          Position Transformer: XYZ
+          Queue Size: 10
+          Selectable: true
+          Show only:
+            Channel Name: sem_label
+            Equal To: 0
+            Value: false
+          Size (Pixels): 3
+          Size (m): 0.009999999776482582
+          Style: Points
+          Topic: /sensor/lidar/vls128_roof/velodyne_points
+          Unreliable: false
+          Use Fixed Frame: true
+          Use rainbow: true
+          Value: false
+        - Alpha: 1
+          Autocompute Intensity Bounds: true
+          Autocompute Value Bounds:
+            Max Value: 10
+            Min Value: -10
+            Value: true
+          Axis: Z
+          Channel Name: sem_label
+          Class: rviz/PointCloud2
+          Color: 245; 121; 0
+          Color Transformer: FlatColor
+          Continuous Transform: false
+          Decay Time: 0
+          Enabled: false
+          Filter range:
+            Channel Name: sem_label
+            Invert Filter: false
+            Lower Limit: 0
+            Upper Limit: 0
+            Value: false
+          Invert Rainbow: false
+          Max Color: 255; 255; 255
+          Min Color: 0; 0; 0
+          Name: 128 Range Filtered
+          Persistent Intensity values: true
+          Position Transformer: XYZ
+          Queue Size: 10
+          Selectable: true
+          Show only:
+            Channel Name: sem_label
+            Equal To: 0
+            Value: false
+          Size (Pixels): 3
+          Size (m): 0.009999999776482582
+          Style: Points
+          Topic: /sensor_calib/hole_pattern_detector_vls128/velodyne_xyz_filtered
+          Unreliable: false
+          Use Fixed Frame: true
+          Use rainbow: true
+          Value: false
+        - Alpha: 1
+          Autocompute Intensity Bounds: true
+          Autocompute Value Bounds:
+            Max Value: 10
+            Min Value: -10
+            Value: true
+          Axis: Z
+          Channel Name: sem_label
+          Class: rviz/PointCloud2
+          Color: 245; 121; 0
+          Color Transformer: FlatColor
+          Continuous Transform: false
+          Decay Time: 0
+          Enabled: false
+          Filter range:
+            Channel Name: sem_label
+            Invert Filter: false
+            Lower Limit: 0
+            Upper Limit: 0
+            Value: false
+          Invert Rainbow: false
+          Max Color: 255; 255; 255
+          Min Color: 0; 0; 0
+          Name: 128 Non Ground Points
+          Persistent Intensity values: true
+          Position Transformer: XYZ
+          Queue Size: 10
+          Selectable: true
+          Show only:
+            Channel Name: sem_label
+            Equal To: 0
+            Value: false
+          Size (Pixels): 3
+          Size (m): 0.009999999776482582
+          Style: Points
+          Topic: /sensor_calib/hole_pattern_detector_vls128/non_ground_points
+          Unreliable: false
+          Use Fixed Frame: true
+          Use rainbow: true
+          Value: false
+        - Alpha: 1
+          Autocompute Intensity Bounds: true
+          Autocompute Value Bounds:
+            Max Value: 10
+            Min Value: -10
+            Value: true
+          Axis: Z
+          Channel Name: sem_label
+          Class: rviz/PointCloud2
+          Color: 245; 121; 0
+          Color Transformer: FlatColor
+          Continuous Transform: false
+          Decay Time: 0
+          Enabled: true
+          Filter range:
+            Channel Name: sem_label
+            Invert Filter: false
+            Lower Limit: 0
+            Upper Limit: 0
+            Value: false
+          Invert Rainbow: false
+          Max Color: 255; 255; 255
+          Min Color: 0; 0; 0
+          Name: 128 Segmented Plane
+          Persistent Intensity values: true
+          Position Transformer: XYZ
+          Queue Size: 10
+          Selectable: true
+          Show only:
+            Channel Name: sem_label
+            Equal To: 0
+            Value: false
+          Size (Pixels): 5
+          Size (m): 0.009999999776482582
+          Style: Points
+          Topic: /sensor_calib/hole_pattern_detector_vls128/segmented_board
+          Unreliable: false
+          Use Fixed Frame: true
+          Use rainbow: true
+          Value: true
+        - Class: rviz/Marker
+          Enabled: false
+          Marker Topic: /sensor_calib/hole_pattern_detector_vls128/debug_markers
+          Name: 128 Cluster
+          Namespaces:
+            {}
+          Queue Size: 100
+          Value: false
+        - Alpha: 1
+          Autocompute Intensity Bounds: true
+          Autocompute Value Bounds:
+            Max Value: 10
+            Min Value: -10
+            Value: true
+          Axis: Z
+          Channel Name: sem_label
+          Class: rviz/PointCloud2
+          Color: 0; 0; 255
+          Color Transformer: FlatColor
+          Continuous Transform: false
+          Decay Time: 0
+          Enabled: false
+          Filter range:
+            Channel Name: sem_label
+            Invert Filter: false
+            Lower Limit: 0
+            Upper Limit: 0
+            Value: false
+          Invert Rainbow: false
+          Max Color: 255; 255; 255
+          Min Color: 0; 0; 0
+          Name: 128 Edges
+          Persistent Intensity values: true
+          Position Transformer: XYZ
+          Queue Size: 15
+          Selectable: true
+          Show only:
+            Channel Name: sem_label
+            Equal To: 0
+            Value: false
+          Size (Pixels): 15
+          Size (m): 0.009999999776482582
+          Style: Points
+          Topic: /sensor_calib/hole_pattern_detector_vls128/edge_points
+          Unreliable: false
+          Use Fixed Frame: true
+          Use rainbow: true
+          Value: false
+        - Class: rviz/Marker
+          Enabled: true
+          Marker Topic: /sensor_calib/hole_pattern_detector_vls128/detection_markers
+          Name: 128 Detections
+          Namespaces:
+            reference_points: true
+          Queue Size: 100
+          Value: true
+      Enabled: true
+      Name: LiDAR Velodyne VLS128
+    - Class: rviz/Marker
+      Enabled: true
+      Marker Topic: /sensor_calib/doppler_simulator_detector_umrr/detection_markers
+      Name: Radar Doppler Simulator Detections
+      Namespaces:
+        doppler_simulator_sensor/radar/umrr/32: true
+      Queue Size: 100
+      Value: true
+    - Class: rviz/Marker
+      Enabled: false
+      Marker Topic: /sensor_calib/extrinsic_sensor_calib/debug_markers
+      Name: Calibration Debug Markers
+      Namespaces:
+        {}
+      Queue Size: 100
+      Value: false
+    - Class: rviz/Group
+      Displays:
+        - Alpha: 1
+          Autocompute Intensity Bounds: true
+          Autocompute Value Bounds:
+            Max Value: 10
+            Min Value: -10
+            Value: true
+          Axis: Z
+          Channel Name: sem_label
+          Class: rviz/PointCloud2
+          Color: 255; 255; 255
+          Color Transformer: FlatColor
+          Continuous Transform: false
+          Decay Time: 0
+          Enabled: true
+          Filter range:
+            Channel Name: sem_label
+            Invert Filter: false
+            Lower Limit: 0
+            Upper Limit: 0
+            Value: false
+          Invert Rainbow: false
+          Max Color: 255; 255; 255
+          Min Color: 0; 0; 0
+          Name: 128 Input
+          Persistent Intensity values: true
+          Position Transformer: XYZ
+          Queue Size: 10
+          Selectable: true
+          Show only:
+            Channel Name: sem_label
+            Equal To: 0
+            Value: false
+          Size (Pixels): 3
+          Size (m): 0.009999999776482582
+          Style: Points
+          Topic: /sensor/lidar/vlp16_front/velodyne_points
+          Unreliable: false
+          Use Fixed Frame: true
+          Use rainbow: true
+          Value: true
+        - Alpha: 1
+          Autocompute Intensity Bounds: true
+          Autocompute Value Bounds:
+            Max Value: 10
+            Min Value: -10
+            Value: true
+          Axis: Z
+          Channel Name: sem_label
+          Class: rviz/PointCloud2
+          Color: 255; 255; 255
+          Color Transformer: Range
+          Continuous Transform: false
+          Decay Time: 0
+          Enabled: false
+          Filter range:
+            Channel Name: sem_label
+            Invert Filter: false
+            Lower Limit: 0
+            Upper Limit: 0
+            Value: false
+          Invert Rainbow: false
+          Max Color: 255; 255; 255
+          Min Color: 0; 0; 0
+          Name: 128 Range Filtered
+          Persistent Intensity values: true
+          Position Transformer: XYZ
+          Queue Size: 10
+          Selectable: true
+          Show only:
+            Channel Name: sem_label
+            Equal To: 0
+            Value: false
+          Size (Pixels): 3
+          Size (m): 0.009999999776482582
+          Style: Points
+          Topic: /sensor_calib/hole_pattern_detector_vlp16_front/velodyne_xyz_filtered
+          Unreliable: false
+          Use Fixed Frame: true
+          Use rainbow: true
+          Value: false
+        - Alpha: 1
+          Autocompute Intensity Bounds: true
+          Autocompute Value Bounds:
+            Max Value: 10
+            Min Value: -10
+            Value: true
+          Axis: Z
+          Channel Name: sem_label
+          Class: rviz/PointCloud2
+          Color: 255; 255; 255
+          Color Transformer: ""
+          Continuous Transform: false
+          Decay Time: 0
+          Enabled: true
+          Filter range:
+            Channel Name: sem_label
+            Invert Filter: false
+            Lower Limit: 0
+            Upper Limit: 0
+            Value: false
+          Invert Rainbow: false
+          Max Color: 255; 255; 255
+          Min Color: 0; 0; 0
+          Name: 128 Non Ground Points
+          Persistent Intensity values: true
+          Position Transformer: XYZ
+          Queue Size: 10
+          Selectable: true
+          Show only:
+            Channel Name: sem_label
+            Equal To: 0
+            Value: false
+          Size (Pixels): 3
+          Size (m): 0.009999999776482582
+          Style: Points
+          Topic: /sensor_calib/hole_pattern_detector_vls128/non_ground_points
+          Unreliable: false
+          Use Fixed Frame: true
+          Use rainbow: true
+          Value: true
+        - Alpha: 1
+          Autocompute Intensity Bounds: true
+          Autocompute Value Bounds:
+            Max Value: 10
+            Min Value: -10
+            Value: true
+          Axis: Z
+          Channel Name: sem_label
+          Class: rviz/PointCloud2
+          Color: 255; 255; 255
+          Color Transformer: FlatColor
+          Continuous Transform: false
+          Decay Time: 0
+          Enabled: false
+          Filter range:
+            Channel Name: sem_label
+            Invert Filter: false
+            Lower Limit: 0
+            Upper Limit: 0
+            Value: false
+          Invert Rainbow: false
+          Max Color: 255; 255; 255
+          Min Color: 0; 0; 0
+          Name: 128 Segmented Plane
+          Persistent Intensity values: true
+          Position Transformer: XYZ
+          Queue Size: 20
+          Selectable: true
+          Show only:
+            Channel Name: sem_label
+            Equal To: 0
+            Value: false
+          Size (Pixels): 10
+          Size (m): 0.009999999776482582
+          Style: Points
+          Topic: /sensor_calib/hole_pattern_detector_vlp16_front/segmented_board
+          Unreliable: false
+          Use Fixed Frame: true
+          Use rainbow: true
+          Value: false
+        - Class: rviz/Marker
+          Enabled: true
+          Marker Topic: /sensor_calib/hole_pattern_detector_vlp16_front/debug_markers
+          Name: 128 Cluster
+          Namespaces:
+            {}
+          Queue Size: 100
+          Value: true
+        - Alpha: 1
+          Autocompute Intensity Bounds: true
+          Autocompute Value Bounds:
+            Max Value: 10
+            Min Value: -10
+            Value: true
+          Axis: Z
+          Channel Name: sem_label
+          Class: rviz/PointCloud2
+          Color: 0; 0; 255
+          Color Transformer: FlatColor
+          Continuous Transform: false
+          Decay Time: 0
+          Enabled: false
+          Filter range:
+            Channel Name: sem_label
+            Invert Filter: false
+            Lower Limit: 0
+            Upper Limit: 0
+            Value: false
+          Invert Rainbow: false
+          Max Color: 255; 255; 255
+          Min Color: 0; 0; 0
+          Name: 128 Edges
+          Persistent Intensity values: true
+          Position Transformer: XYZ
+          Queue Size: 10
+          Selectable: true
+          Show only:
+            Channel Name: sem_label
+            Equal To: 0
+            Value: false
+          Size (Pixels): 15
+          Size (m): 0.009999999776482582
+          Style: Points
+          Topic: /sensor_calib/hole_pattern_detector_vlp16_front/edge_points
+          Unreliable: false
+          Use Fixed Frame: true
+          Use rainbow: true
+          Value: false
+        - Class: rviz/Marker
+          Enabled: false
+          Marker Topic: /sensor_calib/hole_pattern_detector_vlp16_front/detection_markers
+          Name: 128 Detections
+          Namespaces:
+            {}
+          Queue Size: 100
+          Value: false
+      Enabled: true
+      Name: LiDAR Velodyne VLP16
+  Enabled: true
+  Global Options:
+    Background Color: 136; 138; 133
+    Default Light: true
+    Fixed Frame: base_link
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz/Interact
+      Hide Inactive Objects: true
+    - Class: rviz/MoveCamera
+    - Class: rviz/Select
+    - Class: rviz/FocusCamera
+    - Class: rviz/Measure
+    - Class: rviz/SetInitialPose
+      Theta std deviation: 0.2617993950843811
+      Topic: /initialpose
+      X std deviation: 0.5
+      Y std deviation: 0.5
+    - Class: rviz/SetGoal
+      Topic: /move_base_simple/goal
+    - Class: rviz/PublishPoint
+      Single click: true
+      Topic: /clicked_point
+  Value: true
+  Views:
+    Current:
+      Class: rviz/ThirdPersonFollower
+      Distance: 3.928973436355591
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.05999999865889549
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Field of View: 0.7853981852531433
+      Focal Point:
+        X: 5.298034191131592
+        Y: -5.207176685333252
+        Z: 8.344650268554688e-07
+      Focal Shape Fixed Size: true
+      Focal Shape Size: 0.05000000074505806
+      Invert Z Axis: false
+      Name: Current View
+      Near Clip Distance: 0.009999999776482582
+      Pitch: 0.18479914963245392
+      Target Frame: base_link
+      Yaw: 2.2668569087982178
+    Saved: ~
+Window Geometry:
+  Displays:
+    collapsed: false
+  Front Camera:
+    collapsed: false
+  Height: 1135
+  Hide Left Dock: false
+  Hide Right Dock: true
+  QMainWindow State: 000000ff00000000fd000000040000000000000431000003b5fc0200000015fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000000000000000fb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000080052005400440042000000003d0000006e0000000000000000fb000000160052005400440042002000530074007200650061006d0000000044000000e10000000000000000fb000000100044006900730070006c006100790073010000004400000106000000fd01000003fb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000001800460072006f006e0074002000430061006d006500720061010000014b000002080000002201000003fb000000240049006d0061006700650020004d0061007200760045007900650020004c0065006600740100000384000000990000000000000000fb0000000a0049006d0061006700650000000360000000bd0000000000000000fb0000001800430072006f006e006f007300200049006d00610067006500000003800000009d0000000000000000fb0000000800480065006c0070000000037d000000bb0000000000000000fb0000000a0049006d0061006700650100000235000000790000000000000000fb0000000c00430061006d0065007200610100000337000000e60000000000000000fb0000003e00430061006d0065007200610020004d006100720056004500790065002000720069006700680074002000630061006c00690062007200610074006500640100000338000000e50000000000000000fb000000160052006f007300620061006700500061006e0065006c0000000378000000a50000000000000000fb0000000c00430061006d0065007200610000000347000000d60000000000000000fb000000160052006f007300620061006700500061006e0065006c0100000354000000a5000000a5010000030000000100000177000003b5fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a005600690065007700730000000044000003b5000000d301000003fb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000007800000004efc0100000002fb0000000800540069006d0065010000000000000780000002ad01000003fb0000000800540069006d006501000000000000045000000000000000000000034e000003b500000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  RosbagPanel:
+    collapsed: false
+  Time:
+    collapsed: false
+  Views:
+    collapsed: true
+  Width: 1920
+  X: 1920
+  Y: 0

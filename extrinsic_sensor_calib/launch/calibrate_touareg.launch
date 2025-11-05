@@ -1,0 +1,82 @@
+<launch>
+
+  <!-- Load board config -->
+  <rosparam command="load" file="$(find extrinsic_sensor_calib)/config/board_config.yaml" ns="sensor_calib/board_config"/>
+
+  <!-- Surround Cameras -->
+  <include file="$(find extrinsic_sensor_calib)/launch/camera_apriltag_detection.launch">
+    <arg name="name" value="surround_front"/>
+    <arg name="topic" value="/sensor/camera/surround/front"/>
+  </include>
+  <include file="$(find extrinsic_sensor_calib)/launch/camera_apriltag_detection.launch">
+    <arg name="name" value="surround_left"/>
+    <arg name="topic" value="/sensor/camera/surround/left"/>
+  </include>
+  <include file="$(find extrinsic_sensor_calib)/launch/camera_apriltag_detection.launch">
+    <arg name="name" value="surround_back"/>
+    <arg name="topic" value="/sensor/camera/surround/back"/>
+  </include>
+  <include file="$(find extrinsic_sensor_calib)/launch/camera_apriltag_detection.launch">
+    <arg name="name" value="surround_right"/>
+    <arg name="topic" value="/sensor/camera/surround/right"/>
+  </include>
+
+  <!-- JAI Cameras -->
+  <include file="$(find extrinsic_sensor_calib)/launch/camera_apriltag_detection.launch">
+    <arg name="name" value="jai_vis"/>
+    <arg name="topic" value="/sensor/camera/windshield/vis"/>
+  </include>
+  <include file="$(find extrinsic_sensor_calib)/launch/camera_apriltag_detection.launch">
+    <arg name="name" value="jai_nir"/>
+    <arg name="topic" value="/sensor/camera/windshield/nir"/>
+    <arg name="color_mode" value="raw"/>
+  </include>
+
+  <!-- LiDAR -->
+  <include file="$(find extrinsic_sensor_calib)/launch/lidar_hole_pattern_detection.launch">
+    <arg name="name" value="vls128"/>
+    <arg name="topic" value="/sensor/lidar/vls128_roof/velodyne_points"/>
+    <arg name="min_x" value="5"/>
+    <arg name="max_x" value="20"/>
+    <arg name="min_y" value="-10"/>
+    <arg name="max_y" value="10"/>
+    <arg name="min_z" value="-2"/>
+    <arg name="max_z" value="3"/>
+  </include>
+
+  <!-- Radar -->
+  <include file="$(find extrinsic_sensor_calib)/launch/radar_doppler_simulator_detection.launch">
+    <arg name="name" value="umrr"/>
+    <arg name="topic" value="/sensor/radar/umrr/detections"/>
+  </include>
+
+  <!-- Calibration Node -->
+  <!-- When using rosrun or when starting from IDE append __ns:=sensor_calib ~board_config/boards:=/sensor_calib/board_config/boards -->
+  <node pkg="extrinsic_sensor_calib" type="extrinsic_sensor_calib" name="extrinsic_sensor_calib" ns="sensor_calib" output="screen">
+    <remap from="~board_config/boards" to="/sensor_calib/board_config/boards"/>
+    <rosparam>
+      reference_frame: sensor/lidar/vls128_roof
+      lidars:
+      - {frame_id: sensor/lidar/vls128_roof, detector_topic: /sensor_calib/hole_pattern_detector_vls128/detections, sigma: 0.01}
+      cameras:
+      - {frame_id: sensor/camera/surround/front, detector_topic: /sensor_calib/apriltag_detector_surround_front/detections, sigma: 0.2}
+      - {frame_id: sensor/camera/surround/left, detector_topic: /sensor_calib/apriltag_detector_surround_left/detections, sigma: 0.2}
+      - {frame_id: sensor/camera/surround/back, detector_topic: /sensor_calib/apriltag_detector_surround_back/detections, sigma: 0.2}
+      - {frame_id: sensor/camera/surround/right, detector_topic: /sensor_calib/apriltag_detector_surround_right/detections, sigma: 0.2}
+      - {frame_id: sensor/camera/windshield/vis, detector_topic: /sensor_calib/apriltag_detector_jai_vis/detections, sigma: 0.2}
+      - {frame_id: sensor/camera/windshield/nir, detector_topic: /sensor_calib/apriltag_detector_jai_nir/detections, sigma: 0.2}
+      radars:
+      - {frame_id: sensor/radar/umrr/21, detector_topic: /sensor_calib/doppler_simulator_detector_umrr/umrr/21, sigma_range: 0.1, sigma_azimuth: 0.5, sigma_elevation: 9}
+      - {frame_id: sensor/radar/umrr/31, detector_topic: /sensor_calib/doppler_simulator_detector_umrr/umrr/31, sigma_range: 0.1, sigma_azimuth: 0.5, sigma_elevation: 9}
+      - {frame_id: sensor/radar/umrr/32, detector_topic: /sensor_calib/doppler_simulator_detector_umrr/umrr/32, sigma_range: 0.1, sigma_azimuth: 0.5, sigma_elevation: 9}
+      - {frame_id: sensor/radar/umrr/33, detector_topic: /sensor_calib/doppler_simulator_detector_umrr/umrr/33, sigma_range: 0.1, sigma_azimuth: 0.5, sigma_elevation: 9}
+      - {frame_id: sensor/radar/umrr/34, detector_topic: /sensor_calib/doppler_simulator_detector_umrr/umrr/34, sigma_range: 0.1, sigma_azimuth: 0.5, sigma_elevation: 9}
+      - {frame_id: sensor/radar/umrr/35, detector_topic: /sensor_calib/doppler_simulator_detector_umrr/umrr/35, sigma_range: 0.1, sigma_azimuth: 0.5, sigma_elevation: 9}
+    </rosparam>
+  </node>
+
+  <!-- Visualization -->
+  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find extrinsic_sensor_calib)/config/extrinsic_sensor_calib.rviz" ns="sensor_calib"/>
+  <node type="rqt_gui" name="rqt_gui" pkg="rqt_gui" args="--perspective-file $(find extrinsic_sensor_calib)/config/extrinsic_sensor_calib.perspective" ns="sensor_calib"/>
+
+</launch>

@@ -1,0 +1,2 @@
+int64 measurement_idx
+int64 measurement_id

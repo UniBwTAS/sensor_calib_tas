@@ -1,0 +1,29 @@
+# Coordinate system: x right, y up, z towards vehicle
+# Origin on board center
+# All IDs must be unique among all boards
+boards:
+  [
+    {
+      name: 'hole_board',
+      width: 1.2,
+      height: 0.8,
+      layout: # AprilTags
+        [
+          { id: 200, size: 0.228, x: -0.458, y: +0.258, z: 0.0 },
+          { id: 201, size: 0.228, x: +0.458, y: +0.257, z: 0.0 },
+          { id: 202, size: 0.228, x: -0.458, y: -0.256, z: 0.0 },
+          { id: 203, size: 0.228, x: +0.458, y: -0.256, z: 0.0 },
+        ],
+      lidar_reference_points:
+        [
+          { id: 0, radius: 0.12, x: -0.15, y: +0.15, z: 0.0 }, # top_left
+          { id: 1, radius: 0.12, x: +0.15, y: +0.15, z: 0.0 }, # top_right
+          { id: 2, radius: 0.12, x: +0.15, y: -0.15, z: 0.0 }, # bot_right
+          { id: 3, radius: 0.12, x: -0.15, y: -0.15, z: 0.0 }, # bot_left
+        ],
+      radar_targets:
+        [
+          { id: -2000, speed: 4.18, x: 0.009, y: -1.169, z: -0.1144 } # id = rpm of doppler simulator
+        ]
+    },
+  ]

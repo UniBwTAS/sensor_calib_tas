@@ -1,0 +1,94 @@
+<launch>
+
+  <!-- Load board config -->
+  <rosparam command="load" file="$(find extrinsic_sensor_calib)/config/board_config.yaml" ns="sensor_calib/board_config"/>
+
+  <!-- MarVEye Cameras-->
+  <include file="$(find extrinsic_sensor_calib)/launch/camera_apriltag_detection.launch">
+    <arg name="name" value="marveye_left"/>
+    <arg name="topic" value="/sensor/camera/marveye/left"/>
+  </include>
+
+  <!-- Surround Cameras -->
+  <include file="$(find extrinsic_sensor_calib)/launch/camera_apriltag_detection.launch">
+    <arg name="name" value="surround_cam00"/>
+    <arg name="topic" value="/sensor/camera/surround/cam00"/>
+  </include>
+  <include file="$(find extrinsic_sensor_calib)/launch/camera_apriltag_detection.launch">
+    <arg name="name" value="surround_cam02"/>
+    <arg name="topic" value="/sensor/camera/surround/cam02"/>
+  </include>
+  <include file="$(find extrinsic_sensor_calib)/launch/camera_apriltag_detection.launch">
+    <arg name="name" value="surround_cam10"/>
+    <arg name="topic" value="/sensor/camera/surround/cam10"/>
+  </include>
+
+  <!-- LiDAR -->
+  <include file="$(find extrinsic_sensor_calib)/launch/lidar_hole_pattern_detection.launch">
+    <arg name="name" value="vls128"/>
+    <arg name="topic" value="/sensor/lidar/vls128_roof/velodyne_points"/>
+    <arg name="min_x" value="5"/>
+    <arg name="max_x" value="20"/>
+    <arg name="min_y" value="-10"/>
+    <arg name="max_y" value="10"/>
+    <arg name="min_z" value="-2"/>
+    <arg name="max_z" value="3"/>
+  </include>
+
+  <include file="$(find extrinsic_sensor_calib)/launch/lidar_hole_pattern_detection.launch">
+    <arg name="name" value="vlp16_front"/>
+    <arg name="topic" value="/sensor/lidar/vlp16_front/velodyne_points"/>
+    <arg name="min_x" value="5"/>
+    <arg name="max_x" value="20"/>
+    <arg name="min_y" value="-10"/>
+    <arg name="max_y" value="10"/>
+    <arg name="min_z" value="-2"/>
+    <arg name="max_z" value="3"/>
+  </include>
+
+  <include file="$(find extrinsic_sensor_calib)/launch/lidar_hole_pattern_detection.launch">
+    <arg name="name" value="os32_left"/>
+    <arg name="topic" value="/sensor/lidar/os32_left/points"/>
+    <arg name="min_x" value="0"/>
+    <arg name="max_x" value="10"/>
+    <arg name="min_y" value="-5"/>
+    <arg name="max_y" value="5"/>
+    <arg name="min_z" value="0"/>
+    <arg name="max_z" value="2"/>
+  </include>
+
+  <!-- Radar -->
+  <include file="$(find extrinsic_sensor_calib)/launch/radar_doppler_simulator_detection.launch">
+    <arg name="name" value="umrr"/>
+    <arg name="topic" value="/sensor/radar/umrr/detections"/>
+  </include>
+
+  <!-- Calibration Node -->
+  <!-- When using rosrun or when starting from IDE append __ns:=sensor_calib ~board_config/boards:=/sensor_calib/board_config/boards -->
+  <node pkg="extrinsic_sensor_calib" type="extrinsic_sensor_calib" name="extrinsic_sensor_calib" ns="sensor_calib" output="screen">
+    <remap from="~board_config/boards" to="/sensor_calib/board_config/boards"/>
+    <rosparam>
+      reference_frame: sensor/lidar/vls128_roof
+      lidars:
+          - {frame_id: sensor/lidar/vls128_roof, detector_topic: /sensor_calib/hole_pattern_detector_vls128/detections, sigma: 0.01}
+          - {frame_id: sensor/lidar/vlp16_front, detector_topic: /sensor_calib/hole_pattern_detector_vlp16_front/detections, sigma: 0.01}
+          - {frame_id: sensor/lidar/os32_left/os_sensor, detector_topic: /sensor_calib/hole_pattern_detector_os32_left/detections, sigma: 0.01}
+      cameras:
+          - {frame_id: sensor/camera/marveye/left, apriltag_detector_topic: /camera_calibration/apriltag_detector_marveye_left/detections}
+          - {frame_id: sensor/camera/surround/cam00, apriltag_detector_topic: /camera_calibration/apriltag_detector_surround_cam00/detections}
+          - {frame_id: sensor/camera/surround/cam02, apriltag_detector_topic: /camera_calibration/apriltag_detector_surround_cam02/detections}
+          - {frame_id: sensor/camera/surround/cam10, apriltag_detector_topic: /camera_calibration/apriltag_detector_surround_cam10/detections}
+      radars:
+          - {frame_id: sensor/radar/umrr/31, detector_topic: /sensor_calib/doppler_simulator_detector_umrr/umrr/31, sigma_range: 0.1, sigma_azimuth: 0.5, sigma_elevation: 9}
+          - {frame_id: sensor/radar/umrr/32, detector_topic: /sensor_calib/doppler_simulator_detector_umrr/umrr/32, sigma_range: 0.1, sigma_azimuth: 0.5, sigma_elevation: 9}
+          - {frame_id: sensor/radar/umrr/33, detector_topic: /sensor_calib/doppler_simulator_detector_umrr/umrr/33, sigma_range: 0.1, sigma_azimuth: 0.5, sigma_elevation: 9}
+          - {frame_id: sensor/radar/umrr/34, detector_topic: /sensor_calib/doppler_simulator_detector_umrr/umrr/34, sigma_range: 0.1, sigma_azimuth: 0.5, sigma_elevation: 9}
+          - {frame_id: sensor/radar/umrr/35, detector_topic: /sensor_calib/doppler_simulator_detector_umrr/umrr/35, sigma_range: 0.1, sigma_azimuth: 0.5, sigma_elevation: 9}
+    </rosparam>
+  </node>
+
+  <!-- Visualization -->
+  <node type="rviz" name="rviz_camera_calib" pkg="rviz" args="-d $(find extrinsic_sensor_calib)/config/extrinsic_sensor_calib.rviz"/>
+  <node type="rqt_gui" name="rqt_gui" pkg="rqt_gui" args="--perspective-file $(find extrinsic_sensor_calib)/config/extrinsic_sensor_calib.perspective" ns="sensor_calib"/>
+
+</launch>
