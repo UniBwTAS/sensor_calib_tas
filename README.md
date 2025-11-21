@@ -8,7 +8,7 @@
 
 **Author**: [Bianca Forkel](https://www.researchgate.net/profile/Bianca-Forkel)
 
-![extrinsic_calibration](https://github.com/user-attachments/assets/d93b09c1-7f5d-4426-911b-b8f022845d67)
+![extrinsic_calibration](https://github.com/user-attachments/assets/4c4c3b57-1ac1-4657-9893-534fc78aaf97)
 
 ## Citation
 
@@ -33,7 +33,7 @@ Accurate sensor data fusion requires accurate knowledge of the sensors' relative
 
 Our calibration target builds upon that of [`velo2cam_calibration` v1.0](https://github.com/beltransen/velo2cam_calibration/tree/v1.0) and consists of two parts:
 
-<img width="333" height="222" alt="hole_board" src="https://github.com/user-attachments/assets/b418eab9-01b5-432f-ab6a-4ce193f73ca6"/> <img width="333" height="222" alt="doppler_simulator" src="https://github.com/user-attachments/assets/d737aed1-875b-49b3-8981-75601538ef43" />
+<img width="333" height="222" alt="hole_board" src="https://github.com/user-attachments/assets/7d3d19b4-3ca5-4ab1-9367-7a0f7ab86082"/> <img width="333" height="222" alt="doppler_simulator" src="https://github.com/user-attachments/assets/d0f07a15-dc05-498d-af5d-3f86a6995210" />
 
 - A board with holes for detection in the LiDAR point cloud (blue reference points) and AprilTags for detection in the camera image (red reference points).
   Our specific board is 1.2m x 0.8m in size. The holes have a diameter of 24cm, and their centers are offset by 15cm in x- and y-direction from the center of the calibration board. The AprilTags belong to the 36h11 family and are extended by checkerboard corner for improved detection (see [`apriltags_tas`](https://github.com/UniBwTAS/apriltags_tas)). The AprilTags have an edge length of 22.8cm (excluding the checkerboard corners). The colored numbers show the respective IDs of all reference points.
@@ -130,8 +130,8 @@ Hover over the buttons and tabs in the GUI to see tooltips describing their func
 
 ## GUI
 
-<img width="1920" height="1200" alt="rqt" src="https://github.com/user-attachments/assets/73dd7565-62e1-4cbd-bce5-d65fb4347469" />
-<img width="1920" height="1164" alt="rviz" src="https://github.com/user-attachments/assets/b9afab81-76aa-4e36-93b5-d78bb8e0be63" />
+<img width="1920" height="1200" alt="rqt" src="https://github.com/user-attachments/assets/a15fcb50-295e-40fc-8dd5-b1a43722a7e2" />
+<img width="1920" height="1164" alt="rviz" src="https://github.com/user-attachments/assets/6b37be20-ebeb-4595-8693-e39e62026328" />
 
 ## Package Structure
 
