@@ -169,12 +169,14 @@ void SensorCalib::publishResults() noexcept
             }
         };
 
-        if (isLiDAR(reference_frame_id_))
-            get_indices(lidar_measurements_[reference_frame_id_]);
-        else if (isCamera(reference_frame_id_))
-            get_indices(camera_measurements_[reference_frame_id_]);
+        if (!lidar_measurements_.empty())
+            get_indices(lidar_measurements_.cbegin()->second);
+        else if (!camera_measurements_.empty())
+            get_indices(camera_measurements_.cbegin()->second);
+        else if (!radar_measurements_.empty())
+            get_indices(radar_measurements_.cbegin()->second);
         else
-            get_indices(radar_measurements_[reference_frame_id_]);
+            return;
 
         measurement_indices_pub_.publish(msg);
 
@@ -427,7 +429,7 @@ void SensorCalib::visualizeExpectedMeasurements(const cv::viz::Color& prediction
         }
     }
 
-    // Publish expected lidar measurement
+    // Publish expected lidar measurements
     {
         for (const auto& board_elem : calibration_boards_)
         {
@@ -473,7 +475,7 @@ void SensorCalib::visualizeExpectedMeasurements(const cv::viz::Color& prediction
         }
     }
 
-    // Publish expected radar measurement
+    // Publish expected radar measurements
     {
         for (const auto& board_elem : calibration_boards_)
         {
@@ -497,7 +499,7 @@ void SensorCalib::visualizeExpectedMeasurements(const cv::viz::Color& prediction
                 marker.pose.orientation.w = 1.0;
                 marker.scale.x = 0.1;
                 marker.scale.y = 0.1;
-                marker.scale.z = 0.01;
+                marker.scale.z = 0.1;
                 marker.color = color;
 
                 for (const auto& target_elem : board_config.radar_targets)

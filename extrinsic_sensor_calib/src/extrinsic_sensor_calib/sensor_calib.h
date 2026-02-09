@@ -152,7 +152,7 @@ class SensorCalib
 
     std::string timeIndexStr(const MeasurementIndex idx, const size_t id = -1) const noexcept;
 
-    // The tf frame id of the reference (sensor). Usually velodyne LiDAR
+    // The tf frame id of the reference (sensor)
     FrameID reference_frame_id_;
 
     // Board configurations from yaml

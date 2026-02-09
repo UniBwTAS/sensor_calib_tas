@@ -358,16 +358,18 @@ SensorCalib::getBoardPoseFromCameraMeasurement(const BoardID& board_id,
     // Convert result to pose
     if (success)
     {
-        Eigen::Vector3f rvec;
         Eigen::Vector3f tvec;
+        cv::Mat R_cv;
+        cv::Rodrigues(rvec_cv, R_cv);
 
-        cv::cv2eigen(rvec_cv, rvec);
         cv::cv2eigen(tvec_cv, tvec);
+        Eigen::Matrix3d R;
+        cv::cv2eigen(R_cv, R);
 
         Pose result_pose;
         result_pose.translation = tvec.cast<double>();
-        result_pose.rotation =
-            Eigen::Quaterniond(Eigen::AngleAxisd(rvec.cast<double>().norm(), rvec.cast<double>().normalized()));
+        result_pose.rotation = Eigen::Quaterniond(R);
+        result_pose.rotation.normalize();
 
         return std::optional<Pose>(result_pose);
     }
@@ -409,6 +411,8 @@ SensorCalib::getBoardPoseFromLiDARMeasurement(const BoardID& board_id,
     // Set sensor pose = identity constant
     optimization_problem.SetParameterBlockConstant(identity.translation.data());
     optimization_problem.SetParameterBlockConstant(identity.rotation.coeffs().data());
+    optimization_problem.SetParameterization(lidar_to_board.rotation.coeffs().data(),
+                                             new ceres::EigenQuaternionParameterization());
 
     // Solve
     ceres::Solver::Options solve_options;
@@ -457,6 +461,8 @@ SensorCalib::getBoardPoseFromRadarMeasurement(const BoardID& board_id,
     // Set sensor pose = identity constant
     optimization_problem.SetParameterBlockConstant(identity.translation.data());
     optimization_problem.SetParameterBlockConstant(identity.rotation.coeffs().data());
+    optimization_problem.SetParameterization(radar_to_board.rotation.coeffs().data(),
+                                             new ceres::EigenQuaternionParameterization());
 
     // Solve
     ceres::Solver::Options solve_options;

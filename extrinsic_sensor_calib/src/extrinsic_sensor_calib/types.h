@@ -80,7 +80,7 @@ using BoardID = std::string;
 using FrameID = std::string;
 using MeasurementIndex = std::size_t;
 
-using ReferencePointID = std::uint8_t;
+using ReferencePointID = std::int16_t;
 using CartesianCoordinate = Eigen::Vector3d;
 using LiDARBoardMeasurement = std::map<ReferencePointID, CartesianCoordinate>;
 using LiDARMeasurement = std::map<BoardID, LiDARBoardMeasurement>;

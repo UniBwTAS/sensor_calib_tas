@@ -86,7 +86,8 @@ Pose SensorCalib::convertToReferenceFrame(const Pose& pose, const FrameID& senso
     const Pose sensor_pose = config_.use_optimized_sensor_pose_for_board_init ?
                                  sensor_poses_.at(std::make_pair(reference_frame_id_, sensor_frame_id)) :
                                  initial_sensor_poses_.at(std::make_pair(reference_frame_id_, sensor_frame_id));
-    const Eigen::Isometry3d reference_from_sensor = sensor_pose.transform();
+    const Eigen::Isometry3d reference_from_sensor =
+        Eigen::Translation3d(sensor_pose.translation) * Eigen::Isometry3d(sensor_pose.rotation);
 
     const Eigen::Isometry3d ref_from_board = reference_from_sensor * pose_in_sensor;
 

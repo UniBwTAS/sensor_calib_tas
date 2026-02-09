@@ -90,6 +90,7 @@ void SensorCalib::removeLastMeasurementRequest(const std_msgs::Empty::ConstPtr&)
     deleteLastMeasurement();
     calibrate(false);
     measurements_changed_ = true;
+    board_poses_changed_ = true;
 }
 
 void SensorCalib::solveRequest(const std_msgs::Empty::ConstPtr&) noexcept
@@ -256,10 +257,10 @@ void SensorCalib::loadFromFileRequest(const std_msgs::String::ConstPtr& msg) noe
         }
         else
         {
-            SensorCalib other_camera_calib(nh_);
-            ia >> other_camera_calib;
+            SensorCalib other_sensor_calib(nh_);
+            ia >> other_sensor_calib;
 
-            for (const auto& map_elem : other_camera_calib.board_poses_)
+            for (const auto& map_elem : other_sensor_calib.board_poses_)
             {
                 const BoardID& board_id = map_elem.first;
                 const std::map<MeasurementIndex, Pose>& pose_map = map_elem.second;
@@ -268,7 +269,7 @@ void SensorCalib::loadFromFileRequest(const std_msgs::String::ConstPtr& msg) noe
                     const MeasurementIndex meas_idx = pose_map_elem.first;
                     const Pose& pose = pose_map_elem.second;
 
-                    if (other_camera_calib.reference_frame_id_ == reference_frame_id_)
+                    if (other_sensor_calib.reference_frame_id_ == reference_frame_id_)
                     {
                         board_poses_[board_id][meas_idx + num_board_poses_] = pose;
                     }
@@ -277,7 +278,7 @@ void SensorCalib::loadFromFileRequest(const std_msgs::String::ConstPtr& msg) noe
                         const Eigen::Isometry3d other_reference_from_board =
                             Eigen::Translation3d(pose.translation) * Eigen::Isometry3d(pose.rotation);
 
-                        const FrameID other_reference_frame_id = other_camera_calib.reference_frame_id_;
+                        const FrameID other_reference_frame_id = other_sensor_calib.reference_frame_id_;
 
                         const Eigen::Isometry3d reference_from_other_reference =
                             Eigen::Translation3d(
@@ -298,7 +299,7 @@ void SensorCalib::loadFromFileRequest(const std_msgs::String::ConstPtr& msg) noe
                     }
                 }
             }
-            for (const auto& map_elem : other_camera_calib.initial_board_poses_)
+            for (const auto& map_elem : other_sensor_calib.initial_board_poses_)
             {
                 const BoardID& board_id = map_elem.first;
                 const std::map<MeasurementIndex, Pose>& pose_map = map_elem.second;
@@ -307,7 +308,7 @@ void SensorCalib::loadFromFileRequest(const std_msgs::String::ConstPtr& msg) noe
                     const MeasurementIndex meas_idx = pose_map_elem.first;
                     const Pose& pose = pose_map_elem.second;
 
-                    if (other_camera_calib.reference_frame_id_ == reference_frame_id_)
+                    if (other_sensor_calib.reference_frame_id_ == reference_frame_id_)
                     {
                         initial_board_poses_[board_id][meas_idx + num_board_poses_] = pose;
                     }
@@ -316,7 +317,7 @@ void SensorCalib::loadFromFileRequest(const std_msgs::String::ConstPtr& msg) noe
                         const Eigen::Isometry3d other_reference_from_board =
                             Eigen::Translation3d(pose.translation) * Eigen::Isometry3d(pose.rotation);
 
-                        const FrameID other_reference_frame_id = other_camera_calib.reference_frame_id_;
+                        const FrameID other_reference_frame_id = other_sensor_calib.reference_frame_id_;
 
                         const Eigen::Isometry3d reference_from_other_reference =
                             Eigen::Translation3d(
@@ -338,9 +339,9 @@ void SensorCalib::loadFromFileRequest(const std_msgs::String::ConstPtr& msg) noe
                 }
             }
 
-            if (other_camera_calib.lidar_measurements_.size() > 0)
+            if (other_sensor_calib.lidar_measurements_.size() > 0)
             {
-                for (const auto& map_elem : other_camera_calib.lidar_measurements_)
+                for (const auto& map_elem : other_sensor_calib.lidar_measurements_)
                 {
                     const FrameID& frame_id = map_elem.first;
                     const std::map<MeasurementIndex, std::vector<LiDARMeasurement>>& meas_map = map_elem.second;
@@ -356,7 +357,7 @@ void SensorCalib::loadFromFileRequest(const std_msgs::String::ConstPtr& msg) noe
             {
                 for (const FrameID& frame_id : lidar_frame_ids_)
                 {
-                    for (int idx = 0; idx < other_camera_calib.num_board_poses_; idx++)
+                    for (int idx = 0; idx < other_sensor_calib.num_board_poses_; idx++)
                     {
                         lidar_measurements_[frame_id][idx + num_board_poses_].push_back(LiDARMeasurement());
                         ROS_WARN_STREAM_NAMED("IO", "Added empty measurement for '" << frame_id << "'.");
@@ -364,7 +365,7 @@ void SensorCalib::loadFromFileRequest(const std_msgs::String::ConstPtr& msg) noe
                 }
             }
 
-            for (const auto& map_elem : other_camera_calib.camera_measurements_)
+            for (const auto& map_elem : other_sensor_calib.camera_measurements_)
             {
                 const FrameID& frame_id = map_elem.first;
                 const std::map<MeasurementIndex, std::vector<CameraMeasurement>>& meas_map = map_elem.second;
@@ -376,7 +377,7 @@ void SensorCalib::loadFromFileRequest(const std_msgs::String::ConstPtr& msg) noe
                 }
             }
 
-            for (const auto& map_elem : other_camera_calib.camera_measurement_images_)
+            for (const auto& map_elem : other_sensor_calib.camera_measurement_images_)
             {
                 const FrameID& frame_id = map_elem.first;
                 const std::map<MeasurementIndex, std::vector<cv::Mat>>& img_map = map_elem.second;
@@ -388,9 +389,9 @@ void SensorCalib::loadFromFileRequest(const std_msgs::String::ConstPtr& msg) noe
                 }
             }
 
-            if (other_camera_calib.radar_measurements_.size() > 0)
+            if (other_sensor_calib.radar_measurements_.size() > 0)
             {
-                for (const auto& map_elem : other_camera_calib.radar_measurements_)
+                for (const auto& map_elem : other_sensor_calib.radar_measurements_)
                 {
                     const FrameID& frame_id = map_elem.first;
                     const std::map<MeasurementIndex, std::vector<RadarMeasurement>>& meas_map = map_elem.second;
@@ -406,7 +407,7 @@ void SensorCalib::loadFromFileRequest(const std_msgs::String::ConstPtr& msg) noe
             {
                 for (const FrameID& frame_id : radar_frame_ids_)
                 {
-                    for (int idx = 0; idx < other_camera_calib.num_board_poses_; idx++)
+                    for (int idx = 0; idx < other_sensor_calib.num_board_poses_; idx++)
                     {
                         radar_measurements_[frame_id][idx + num_board_poses_].push_back(RadarMeasurement());
                         ROS_WARN_STREAM_NAMED("IO", "Added empty measurement for '" << frame_id << "'.");
@@ -414,7 +415,7 @@ void SensorCalib::loadFromFileRequest(const std_msgs::String::ConstPtr& msg) noe
                 }
             }
 
-            num_board_poses_ += other_camera_calib.num_board_poses_;
+            num_board_poses_ += other_sensor_calib.num_board_poses_;
         }
 
         // Init potentially missing publishers
@@ -796,7 +797,8 @@ void SensorCalib::deleteLastMeasurement() noexcept
         {
             std::map<MeasurementIndex, std::vector<cv::Mat>>& camera_measurement_images =
                 camera_measurement_images_elem.second;
-            if (camera_measurement_images.count(num_board_poses_ - 1))
+            if (camera_measurement_images.count(num_board_poses_ - 1) &&
+                camera_measurement_images.at(num_board_poses_ - 1).size() > 0)
                 camera_measurement_images.at(num_board_poses_ - 1).pop_back();
         }
 
