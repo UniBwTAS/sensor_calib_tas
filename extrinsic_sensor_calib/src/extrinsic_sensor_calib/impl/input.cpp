@@ -365,27 +365,41 @@ void SensorCalib::loadFromFileRequest(const std_msgs::String::ConstPtr& msg) noe
                 }
             }
 
-            for (const auto& map_elem : other_sensor_calib.camera_measurements_)
+            if (other_sensor_calib.camera_measurements_.size() > 0)
             {
-                const FrameID& frame_id = map_elem.first;
-                const std::map<MeasurementIndex, std::vector<CameraMeasurement>>& meas_map = map_elem.second;
-                for (const auto& meas_map_elem : meas_map)
+                for (const auto& map_elem : other_sensor_calib.camera_measurements_)
                 {
-                    const MeasurementIndex meas_idx = meas_map_elem.first;
-                    const std::vector<CameraMeasurement>& meas_vec = meas_map_elem.second;
-                    camera_measurements_[frame_id][meas_idx + num_board_poses_] = meas_vec;
+                    const FrameID& frame_id = map_elem.first;
+                    const std::map<MeasurementIndex, std::vector<CameraMeasurement>>& meas_map = map_elem.second;
+                    for (const auto& meas_map_elem : meas_map)
+                    {
+                        const MeasurementIndex meas_idx = meas_map_elem.first;
+                        const std::vector<CameraMeasurement>& meas_vec = meas_map_elem.second;
+                        camera_measurements_[frame_id][meas_idx + num_board_poses_] = meas_vec;
+                    }
+                }
+
+                for (const auto& map_elem : other_sensor_calib.camera_measurement_images_)
+                {
+                    const FrameID& frame_id = map_elem.first;
+                    const std::map<MeasurementIndex, std::vector<cv::Mat>>& img_map = map_elem.second;
+                    for (const auto& img_map_elem : img_map)
+                    {
+                        const MeasurementIndex meas_idx = img_map_elem.first;
+                        const std::vector<cv::Mat>& img_vec = img_map_elem.second;
+                        camera_measurement_images_[frame_id][meas_idx + num_board_poses_] = img_vec;
+                    }
                 }
             }
-
-            for (const auto& map_elem : other_sensor_calib.camera_measurement_images_)
+            else
             {
-                const FrameID& frame_id = map_elem.first;
-                const std::map<MeasurementIndex, std::vector<cv::Mat>>& img_map = map_elem.second;
-                for (const auto& img_map_elem : img_map)
+                for (const FrameID& frame_id : camera_frame_ids_)
                 {
-                    const MeasurementIndex meas_idx = img_map_elem.first;
-                    const std::vector<cv::Mat>& img_vec = img_map_elem.second;
-                    camera_measurement_images_[frame_id][meas_idx + num_board_poses_] = img_vec;
+                    for (int idx = 0; idx < other_sensor_calib.num_board_poses_; idx++)
+                    {
+                        camera_measurements_[frame_id][idx + num_board_poses_].push_back(CameraMeasurement());
+                        ROS_WARN_STREAM_NAMED("IO", "Added empty measurement for '" << frame_id << "'.");
+                    }
                 }
             }
 
