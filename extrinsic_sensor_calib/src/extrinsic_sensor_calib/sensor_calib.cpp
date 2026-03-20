@@ -92,68 +92,68 @@ SensorCalib::SensorCalib(ros::NodeHandle& nh) : nh_(nh)
         XmlRpc::XmlRpcValue camera_configs;
         if (!nh_.getParam("cameras", camera_configs))
         {
-            ROS_FATAL_STREAM_NAMED("Config", "Failed to get parameter 'cameras'");
+            ROS_ERROR_STREAM_NAMED("Config", "Failed to get parameter 'cameras'");
             publishStatusMsg("Failed to get parameter 'cameras'");
-            ros::shutdown();
-            std::exit(-1);
         }
-
-        for (int i = 0; i < camera_configs.size(); i++)
+        else
         {
-            const XmlRpc::XmlRpcValue& camera_config = camera_configs[i];
-
-            if (camera_config.hasMember("frame_id"))
+            for (int i = 0; i < camera_configs.size(); i++)
             {
-                ROS_ASSERT(camera_config["frame_id"].getType() == XmlRpc::XmlRpcValue::TypeString);
-                FrameID frame_id = camera_config["frame_id"];
-                if (camera_config.hasMember("detector_topic"))
+                const XmlRpc::XmlRpcValue& camera_config = camera_configs[i];
+
+                if (camera_config.hasMember("frame_id"))
                 {
-                    camera_frame_ids_.push_back(frame_id);
-                    ROS_ASSERT(camera_config["detector_topic"].getType() == XmlRpc::XmlRpcValue::TypeString);
-                    apriltag_detector_topics_.push_back(camera_config["detector_topic"]);
-
-                    measurement_uncertainties_[frame_id].sigma_pixel =
-                        xmlRpcGetDoubleWithDefault(camera_config, "sigma", 0.2);
-
-                    if (!camera_config.hasMember("sigma"))
+                    ROS_ASSERT(camera_config["frame_id"].getType() == XmlRpc::XmlRpcValue::TypeString);
+                    FrameID frame_id = camera_config["frame_id"];
+                    if (camera_config.hasMember("detector_topic"))
                     {
-                        ROS_WARN_STREAM_NAMED("Config",
-                                              "Using default measurement uncertainty for camera '"
-                                                  << frame_id << "' due to missing parameter 'sigma'");
-                    }
+                        camera_frame_ids_.push_back(frame_id);
+                        ROS_ASSERT(camera_config["detector_topic"].getType() == XmlRpc::XmlRpcValue::TypeString);
+                        apriltag_detector_topics_.push_back(camera_config["detector_topic"]);
 
-                    if (camera_config.hasMember("camera_topic"))
-                    {
-                        ROS_ASSERT(camera_config["camera_topic"].getType() == XmlRpc::XmlRpcValue::TypeString);
-                        camera_topics_.push_back(camera_config["camera_topic"]);
+                        measurement_uncertainties_[frame_id].sigma_pixel =
+                            xmlRpcGetDoubleWithDefault(camera_config, "sigma", 0.2);
+
+                        if (!camera_config.hasMember("sigma"))
+                        {
+                            ROS_WARN_STREAM_NAMED("Config",
+                                                  "Using default measurement uncertainty for camera '"
+                                                      << frame_id << "' due to missing parameter 'sigma'");
+                        }
+
+                        if (camera_config.hasMember("camera_topic"))
+                        {
+                            ROS_ASSERT(camera_config["camera_topic"].getType() == XmlRpc::XmlRpcValue::TypeString);
+                            camera_topics_.push_back(camera_config["camera_topic"]);
+                        }
+                        else
+                        {
+                            camera_topics_.push_back("/" + frame_id);
+                        }
+
+                        if (camera_config.hasMember("rectified"))
+                        {
+                            ROS_ASSERT(camera_config["rectified"].getType() == XmlRpc::XmlRpcValue::TypeBoolean);
+                            camera_intrinsics_[frame_id].rectified = camera_config["rectified"];
+                        }
+                        else
+                        {
+                            camera_intrinsics_[frame_id].rectified = false;
+                            ROS_WARN_STREAM_NAMED("Config",
+                                                  "Assuming unrectified image for camera '"
+                                                      << frame_id << "' due to missing parameter 'rectified'");
+                        }
                     }
                     else
                     {
-                        camera_topics_.push_back("/" + frame_id);
-                    }
-
-                    if (camera_config.hasMember("rectified"))
-                    {
-                        ROS_ASSERT(camera_config["rectified"].getType() == XmlRpc::XmlRpcValue::TypeBoolean);
-                        camera_intrinsics_[frame_id].rectified = camera_config["rectified"];
-                    }
-                    else
-                    {
-                        camera_intrinsics_[frame_id].rectified = false;
-                        ROS_WARN_STREAM_NAMED("Config",
-                                              "Assuming unrectified image for camera '"
-                                                  << frame_id << "' due to missing parameter 'rectified'");
+                        ROS_ERROR_STREAM_NAMED(
+                            "Config", "Ignoring camera '" << frame_id << "' due to missing parameter 'detector_topic'");
                     }
                 }
                 else
                 {
-                    ROS_ERROR_STREAM_NAMED(
-                        "Config", "Ignoring camera '" << frame_id << "' due to missing parameter 'detector_topic'");
+                    ROS_ERROR_STREAM_NAMED("Config", "Ignoring camera with missing parameter 'frame id'");
                 }
-            }
-            else
-            {
-                ROS_ERROR_STREAM_NAMED("Config", "Ignoring camera with missing parameter 'frame id'");
             }
         }
     }
