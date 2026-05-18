@@ -15,6 +15,7 @@
 #include <ceres/ceres.h>
 #include <opencv2/viz/types.hpp>
 #include <pcl/point_cloud.h>
+#include <boost/serialization/version.hpp>
 
 #include <image_geometry/pinhole_camera_model.h>
 #include <ros/ros.h>
@@ -77,7 +78,29 @@ class SensorCalib
         ar & initial_board_poses_;
         ar & sensor_poses_;
         ar & initial_sensor_poses_;
-        ar & lidar_measurements_;
+        if (version == 0)
+        {
+            // Legacy format used std::uint8_t as ReferencePointID (innermost key of LiDARBoardMeasurement).
+            using LegacyLiDARBoardMeasurement = std::map<std::uint8_t, CartesianCoordinate>;
+            using LegacyLiDARMeasurement = std::map<BoardID, LegacyLiDARBoardMeasurement>;
+            std::map<FrameID, std::map<MeasurementIndex, std::vector<LegacyLiDARMeasurement>>> legacy_lm;
+            ar & legacy_lm;
+            lidar_measurements_.clear();
+            for (const auto& fid_kv : legacy_lm)
+                for (const auto& idx_kv : fid_kv.second)
+                    for (const auto& legacy_m : idx_kv.second)
+                    {
+                        LiDARMeasurement m;
+                        for (const auto& bid_kv : legacy_m)
+                            for (const auto& pt_kv : bid_kv.second)
+                                m[bid_kv.first][pt_kv.first] = pt_kv.second;
+                        lidar_measurements_[fid_kv.first][idx_kv.first].push_back(std::move(m));
+                    }
+        }
+        else
+        {
+            ar & lidar_measurements_;
+        }
         ar & camera_measurements_;
         ar & radar_measurements_;
         ar & num_board_poses_;
@@ -249,3 +272,6 @@ class CeresIterationCallback : public ceres::IterationCallback
   private:
     SensorCalib& camera_calib_;
 };
+
+BOOST_CLASS_VERSION(SensorCalib, 1)
+BOOST_CLASS_VERSION(BoardConfig, 1)

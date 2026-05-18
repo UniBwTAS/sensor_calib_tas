@@ -138,7 +138,19 @@ struct BoardConfig
     void serialize(Archive& ar, const unsigned int version)
     {
         ar & apriltags;
-        ar & lidar_reference_points;
+        if (version == 0)
+        {
+            // Legacy format used std::uint8_t as ReferencePointID.
+            std::map<std::uint8_t, LiDARReferencePointConfig> legacy_lrp;
+            ar & legacy_lrp;
+            lidar_reference_points.clear();
+            for (const auto& kv : legacy_lrp)
+                lidar_reference_points[kv.first] = kv.second;
+        }
+        else
+        {
+            ar & lidar_reference_points;
+        }
         ar & radar_targets;
     }
 };
