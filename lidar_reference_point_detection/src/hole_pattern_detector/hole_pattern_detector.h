@@ -51,7 +51,8 @@ class HolePatternDetector
                                      const double small_side_length,
                                      const double depth,
                                      const bool found_board,
-                                     const std_msgs::Header& header) noexcept;
+                                     const std_msgs::Header& header,
+                                     int id) noexcept;
 
     void publishResults(const Eigen::Vector3d& translation,
                         const Eigen::Quaterniond& rotation,

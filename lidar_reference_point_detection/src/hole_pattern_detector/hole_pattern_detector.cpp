@@ -240,6 +240,14 @@ bool HolePatternDetector::findCalibrationBoard(const pcl::PointCloud<pcl::PointX
         ec.setInputCloud(plane_cloud);
         ec.extract(cluster_indices);
 
+        // Clear previous-iteration debug markers so stale bounding boxes don't linger in RViz.
+        {
+            visualization_msgs::Marker delete_marker;
+            delete_marker.action = visualization_msgs::Marker::DELETEALL;
+            pub_debug_marker_.publish(delete_marker);
+        }
+
+        int bbox_id = 0;
         // Check if one of the extracted clusters is the calibration board
         for (std::vector<pcl::PointIndices>::const_iterator it = cluster_indices.begin(); it != cluster_indices.end();
              ++it)
@@ -302,7 +310,8 @@ bool HolePatternDetector::findCalibrationBoard(const pcl::PointCloud<pcl::PointX
             }
 
             visualizeClusterBoundingBox(
-                obb_position, obb_rotation, large_side_length, small_side_length, depth, found_board, header);
+                obb_position, obb_rotation, large_side_length, small_side_length, depth, found_board, header, bbox_id);
+            ++bbox_id;
 
             if (found_board)
             {
@@ -471,15 +480,16 @@ void HolePatternDetector::visualizeClusterBoundingBox(const pcl::PointXYZR& obb_
                                                       const double small_side_length,
                                                       const double depth,
                                                       const bool found_board,
-                                                      const std_msgs::Header& header) noexcept
+                                                      const std_msgs::Header& header,
+                                                      int id) noexcept
 {
     const Eigen::Vector3f obb_x = obb_rotation.col(0);
     const Eigen::Vector3f obb_y = obb_rotation.col(1);
     const Eigen::Vector3f obb_z = obb_rotation.col(1);
     visualization_msgs::Marker marker;
     marker.header = header;
-    marker.ns = "bounding_box";
-    marker.id = 0;
+    marker.ns = found_board ? "board" : "candidates";
+    marker.id = id;
     marker.type = visualization_msgs::Marker::LINE_STRIP;
     marker.action = visualization_msgs::Marker::ADD;
     marker.pose.position.x = obb_position.x;
